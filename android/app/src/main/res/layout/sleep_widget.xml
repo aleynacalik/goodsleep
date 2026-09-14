@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/widget_background"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🌙 Tatlı Rüyalar"
+        android:textSize="10sp"
+        android:textColor="#9E8AB5"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/widget_baby_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bebek"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#2C223A" />
+
+    <TextView
+        android:id="@+id/widget_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uyanık"
+        android:textSize="12sp"
+        android:textColor="#836FA9"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
