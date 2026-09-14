@@ -18,9 +18,22 @@ if (jwtSecret.Length < 32)
 var key = Encoding.ASCII.GetBytes(jwtSecret);
 
 // 2. Veritabanı — Railway DATABASE_URL env var'ı önceliklidir
-var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL")
+var rawDatabaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL")
     ?? builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Veritabanı bağlantı dizesi yapılandırılmamış.");
+
+// Railway postgresql:// URI formatını Npgsql connection string'e çevir
+string databaseUrl;
+if (rawDatabaseUrl.StartsWith("postgresql://") || rawDatabaseUrl.StartsWith("postgres://"))
+{
+    var uri = new Uri(rawDatabaseUrl);
+    var userInfo = uri.UserInfo.Split(':');
+    databaseUrl = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+}
+else
+{
+    databaseUrl = rawDatabaseUrl;
+}
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(databaseUrl));
