@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:5118/api';
+  static const String baseUrl = 'https://goodsleep-production.up.railway.app/api';
 
   static const _storage = FlutterSecureStorage(
     aOptions: AndroidOptions(
